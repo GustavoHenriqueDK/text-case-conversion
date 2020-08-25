@@ -3,9 +3,6 @@ package com.example.textcaseconversion
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
-import android.view.WindowManager
-import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -22,17 +19,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideStatusBarAndSupportBar() {
         supportActionBar!!.hide()
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+
     }
 
     private fun changeTextInRealTime() {
         editTextText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {
-                val value = s.toString()
-                textView.text = value
+            override fun afterTextChanged(output: Editable) {
+                editTextTextOutput.setText(output.toString())
             }
 
             override fun beforeTextChanged(
@@ -51,33 +44,5 @@ class MainActivity : AppCompatActivity() {
             ) {
             }
         })
-    }
-
-    fun onRadioButtonClicked(view: View) {
-        if (view is RadioButton) {
-            val checked = view.isChecked
-            when (view.getId()) {
-                R.id.radioButtonLowerCase ->
-                    if (checked) {
-                        textView.text = textView.text.toString().toLowerCase()
-                    }
-                R.id.radioButtonUpperCase ->
-                    if (checked) {
-                        textView.text = textView.text.toString().toUpperCase()
-                    }
-                R.id.radioButtonAlternativeCase ->
-                    if (checked) {
-                        //TO-DO: Alternative case!
-                    }
-                R.id.radioButtonAlternativeCase2 ->
-                    if (checked) {
-                        //TO-DO: Alternative case 2!
-                    }
-                R.id.radioButtonFormalText ->
-                    if (checked) {
-                        //TO-DO: Formal text!
-                    }
-            }
-        }
     }
 }

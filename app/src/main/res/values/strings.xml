@@ -5,4 +5,11 @@
     <string name="radio_button_alternative_case_1">Letras alterantivas (1)</string>
     <string name="radio_button_alternative_case_2">Letras alternativas (2)</string>
     <string name="radio_button_formal_text">Texto formal</string>
+    <string-array name="text_convert_options">
+        <item>Letras maiúsculas</item>
+        <item>Letras minúsculas</item>
+        <item>Letras alternativas (1)</item>
+        <item>Letras alternativas (2)</item>
+        <item>Texto formal</item>
+    </string-array>
 </resources>
