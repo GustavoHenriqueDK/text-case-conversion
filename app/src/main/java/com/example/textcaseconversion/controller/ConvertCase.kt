@@ -2,12 +2,13 @@ package com.example.textcaseconversion.controller
 
 class ConvertCase {
 
-    fun toAlternativeCase(text: String): String {
-        return transformInAlternativeCase(text)
+    fun toAlternativeCase(text: String, firstLetterUppercase: Boolean): String {
+        return transformInAlternativeCase(text, firstLetterUppercase)
     }
 
-    private fun transformInAlternativeCase(text: String): String {
-        var counter = 0
+    private fun transformInAlternativeCase(text: String, firstLetterUppercase: Boolean): String {
+        var counter = 1
+        if (firstLetterUppercase) counter = 0
         var alternativeText = ""
         for (i in text.indices) {
             if (counter == 0) {

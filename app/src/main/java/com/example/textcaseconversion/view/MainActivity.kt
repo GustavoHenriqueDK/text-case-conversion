@@ -18,8 +18,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         hideStatusBarAndSupportBar()
 
-        val convertCase = ConvertCase()
-        Log.e("testing this ", convertCase.toAlternativeCase("Gustavo"))
 
         changeTextInRealTime()
         getSelectedItemInSpinner()
@@ -38,6 +36,14 @@ class MainActivity : AppCompatActivity() {
                 }
                 if (spinner.selectedItem.toString() == "Letras minúsculas") {
                     editTextTextOutput.setText(editTextText.text.toString().toLowerCase())
+                }
+                if (spinner.selectedItem.toString() == "Letras alternativas (1)") {
+                    val convertCase = ConvertCase()
+                    editTextTextOutput.setText(convertCase.toAlternativeCase(editTextText.text.toString(), firstLetterUppercase = true))
+                }
+                if (spinner.selectedItem.toString() == "Letras alternativas (2)") {
+                    val convertCase = ConvertCase()
+                    editTextTextOutput.setText(convertCase.toAlternativeCase(editTextText.text.toString(), firstLetterUppercase = false))
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -59,6 +65,14 @@ class MainActivity : AppCompatActivity() {
                 }
                 if (spinner.selectedItem.toString() == "Letras minúsculas") {
                     editTextTextOutput.setText(output.toString().toLowerCase())
+                }
+                if (spinner.selectedItem.toString() == "Letras alternativas (1)") {
+                    val convertCase = ConvertCase()
+                    editTextTextOutput.setText(convertCase.toAlternativeCase(editTextText.text.toString(), firstLetterUppercase = true))
+                }
+                if (spinner.selectedItem.toString() == "Letras alternativas (2)") {
+                    val convertCase = ConvertCase()
+                    editTextTextOutput.setText(convertCase.toAlternativeCase(editTextText.text.toString(), firstLetterUppercase = false))
                 }
             }
 
