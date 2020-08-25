@@ -27,8 +27,8 @@
             android:layout_weight="1"
             android:drawablePadding="10dp"
             android:ems="10"
-            android:hint="Escreva aqui..."
             android:gravity="start"
+            android:hint="Escreva aqui..."
             android:inputType="textMultiLine"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -40,17 +40,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/buttonGenerate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="GERAR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutText"
-        app:layout_constraintVertical_bias="0.120000005" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -59,6 +48,53 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonGenerate" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutText"
+        app:layout_constraintVertical_bias="0.74" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutText"
+        app:layout_constraintVertical_bias="0.29000002">
+
+        <RadioButton
+            android:id="@+id/radioButtonLowerCase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/radio_button_lowercase" />
+
+        <RadioButton
+            android:id="@+id/radioButtonUppercase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/radio_button_uppercase" />
+
+        <RadioButton
+            android:id="@+id/radioButtonAlternativeCase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/radio_button_alternative_case_1" />
+
+        <RadioButton
+            android:id="@+id/radioButtonAlternativeCase2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/radio_button_alternative_case_2" />
+
+        <RadioButton
+            android:id="@+id/radioButtonFormalText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/radio_button_formal_text" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

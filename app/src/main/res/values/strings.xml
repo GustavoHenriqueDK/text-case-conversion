@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Text Case Conversion</string>
+    <string name="radio_button_lowercase">Letras minúsculas</string>
+    <string name="radio_button_uppercase">Letra maiúsculas</string>
+    <string name="radio_button_alternative_case_1">Letras alterantivas (1)</string>
+    <string name="radio_button_alternative_case_2">Letras alternativas (2)</string>
+    <string name="radio_button_formal_text">Texto formal</string>
 </resources>
