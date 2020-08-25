@@ -3,10 +3,12 @@ package com.example.textcaseconversion.view
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.textcaseconversion.R
+import com.example.textcaseconversion.controller.ConvertCase
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -15,6 +17,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         hideStatusBarAndSupportBar()
+
+        val convertCase = ConvertCase()
+        Log.e("testing this ", convertCase.toAlternativeCase("Gustavo"))
 
         changeTextInRealTime()
         getSelectedItemInSpinner()
