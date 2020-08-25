@@ -114,14 +114,56 @@
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/button"
+    <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutText" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView"
+        app:layout_constraintVertical_bias="0.18">
+
+        <RadioButton
+            android:id="@+id/radioButtonLowerCase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/radio_button_lowercase" />
+
+        <RadioButton
+            android:id="@+id/radioButtonUpperCase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/radio_button_uppercase" />
+
+        <RadioButton
+            android:id="@+id/radioButtonAlternativeCase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/radio_button_alternative_case_1" />
+
+        <RadioButton
+            android:id="@+id/radioButtonAlternativeCase2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/radio_button_alternative_case_2" />
+
+        <RadioButton
+            android:id="@+id/radioButtonFormalText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/radio_button_formal_text" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
