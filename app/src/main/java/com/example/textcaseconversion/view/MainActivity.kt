@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         hideStatusBarAndSupportBar()
 
-
         changeTextInRealTime()
         getSelectedItemInSpinner()
     }
@@ -31,6 +30,8 @@ class MainActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
+                val convertCase = ConvertCase()
+
                 if (spinner.selectedItem.toString() == "Letras maiúsculas") {
                     editTextTextOutput.setText(editTextText.text.toString().toUpperCase())
                 }
@@ -38,12 +39,16 @@ class MainActivity : AppCompatActivity() {
                     editTextTextOutput.setText(editTextText.text.toString().toLowerCase())
                 }
                 if (spinner.selectedItem.toString() == "Letras alternativas (1)") {
-                    val convertCase = ConvertCase()
                     editTextTextOutput.setText(convertCase.toAlternativeCase(editTextText.text.toString(), firstLetterUppercase = true))
                 }
                 if (spinner.selectedItem.toString() == "Letras alternativas (2)") {
-                    val convertCase = ConvertCase()
                     editTextTextOutput.setText(convertCase.toAlternativeCase(editTextText.text.toString(), firstLetterUppercase = false))
+                }
+                if (spinner.selectedItem.toString() == "Adicionar hífen") {
+                    editTextTextOutput.setText(convertCase.toHyphenCase(editTextText.text.toString()))
+                }
+                if (spinner.selectedItem.toString() == "Remover hífen") {
+                    editTextTextOutput.setText(convertCase.removeHyphenCase(editTextText.text.toString()))
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -60,6 +65,8 @@ class MainActivity : AppCompatActivity() {
     private fun changeTextInRealTime() {
         editTextText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(output: Editable) {
+                val convertCase = ConvertCase()
+
                 if (spinner.selectedItem.toString() == "Letras maiúsculas") {
                     editTextTextOutput.setText(output.toString().toUpperCase())
                 }
@@ -71,8 +78,13 @@ class MainActivity : AppCompatActivity() {
                     editTextTextOutput.setText(convertCase.toAlternativeCase(editTextText.text.toString(), firstLetterUppercase = true))
                 }
                 if (spinner.selectedItem.toString() == "Letras alternativas (2)") {
-                    val convertCase = ConvertCase()
                     editTextTextOutput.setText(convertCase.toAlternativeCase(editTextText.text.toString(), firstLetterUppercase = false))
+                }
+                if (spinner.selectedItem.toString() == "Adicionar hífen") {
+                    editTextTextOutput.setText(convertCase.toHyphenCase(editTextText.text.toString()))
+                }
+                if (spinner.selectedItem.toString() == "Remover hífen") {
+                    editTextTextOutput.setText(convertCase.removeHyphenCase(editTextText.text.toString()))
                 }
             }
 

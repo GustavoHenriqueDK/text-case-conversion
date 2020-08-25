@@ -10,6 +10,7 @@
         <item>Letras minúsculas</item>
         <item>Letras alternativas (1)</item>
         <item>Letras alternativas (2)</item>
-        <item>Texto formal</item>
+        <item>Adicionar hífen</item>
+        <item>Remover hífen</item>
     </string-array>
 </resources>

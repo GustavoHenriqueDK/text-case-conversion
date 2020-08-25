@@ -6,6 +6,22 @@ class ConvertCase {
         return transformInAlternativeCase(text, firstLetterUppercase)
     }
 
+    fun toHyphenCase(text: String): String {
+        return transformInHyphenCase(text)
+    }
+
+    fun removeHyphenCase(text: String): String {
+        return removeHyphenFromText(text)
+    }
+
+    private fun transformInHyphenCase(text: String): String {
+        return text.replace(oldValue = " ", newValue = "-")
+    }
+
+    private fun removeHyphenFromText(text: String): String {
+        return text.replace(oldValue = "-", newValue = " ")
+    }
+
     private fun transformInAlternativeCase(text: String, firstLetterUppercase: Boolean): String {
         var counter = 1
         if (firstLetterUppercase) counter = 0
