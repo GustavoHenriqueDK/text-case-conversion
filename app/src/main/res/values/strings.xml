@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Text Case Conversion</string>
+    <string name="app_name">Conversor de texto</string>
     <string name="radio_button_lowercase">Letras minúsculas</string>
     <string name="radio_button_uppercase">Letra maiúsculas</string>
     <string name="radio_button_alternative_case_1">Letras alterantivas (1)</string>
