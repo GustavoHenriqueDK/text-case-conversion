@@ -1,28 +1,42 @@
 package com.example.textcaseconversion.view
 
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.example.textcaseconversion.R
 import com.example.textcaseconversion.controller.ConvertCase
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
+
+    private val mutableLiveData = MutableLiveData<Boolean>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         hideStatusBarAndSupportBar()
 
-        val convertCase = ConvertCase()
-        Log.e("teste ", convertCase.toFormalCase("Vamos fazer. vários. testes de pontuação. para testar."))
-
         changeTextInRealTime()
         getSelectedItemInSpinner()
+        observeTextLength()
+
+        buttonCopyClick()
+    }
+
+    private fun buttonCopyClick() {
+        button4.setOnClickListener {
+            copyToClipboard(editTextTextOutput.text.toString())
+            Toast.makeText(this, "Copiado!", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun getSelectedItemInSpinner(): String {
@@ -33,62 +47,58 @@ class MainActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                val convertCase = ConvertCase()
-
-                if (spinner.selectedItem.toString() == "Letras maiúsculas") {
-                    editTextTextOutput.setText(editTextText.text.toString().toUpperCase())
-                }
-                if (spinner.selectedItem.toString() == "Letras minúsculas") {
-                    editTextTextOutput.setText(editTextText.text.toString().toLowerCase())
-                }
-                if (spinner.selectedItem.toString() == "Letras alternativas (1)") {
-                    editTextTextOutput.setText(convertCase.toAlternativeCase(editTextText.text.toString(), firstLetterUppercase = true))
-                }
-                if (spinner.selectedItem.toString() == "Letras alternativas (2)") {
-                    editTextTextOutput.setText(convertCase.toAlternativeCase(editTextText.text.toString(), firstLetterUppercase = false))
-                }
-                if (spinner.selectedItem.toString() == "Adicionar hífen") {
-                    editTextTextOutput.setText(convertCase.toHyphenCase(editTextText.text.toString()))
-                }
-                if (spinner.selectedItem.toString() == "Remover hífen") {
-                    editTextTextOutput.setText(convertCase.removeHyphenCase(editTextText.text.toString()))
-                }
+                setSelectedItemInSpinner()
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
         return spinner.selectedItem.toString()
     }
 
+    private fun setSelectedItemInSpinner() {
+        val convertCase = ConvertCase()
+
+        if (spinner.selectedItem.toString() == "Letras maiúsculas") {
+            editTextTextOutput.setText(editTextText.text.toString().toUpperCase())
+        }
+        if (spinner.selectedItem.toString() == "Letras minúsculas") {
+            editTextTextOutput.setText(editTextText.text.toString().toLowerCase())
+        }
+        if (spinner.selectedItem.toString() == "Letras alternativas (1)") {
+            editTextTextOutput.setText(
+                convertCase.toAlternativeCase(
+                    editTextText.text.toString(),
+                    firstLetterUppercase = true
+                )
+            )
+        }
+        if (spinner.selectedItem.toString() == "Letras alternativas (2)") {
+            editTextTextOutput.setText(
+                convertCase.toAlternativeCase(
+                    editTextText.text.toString(),
+                    firstLetterUppercase = false
+                )
+            )
+        }
+        if (spinner.selectedItem.toString() == "Adicionar hífen") {
+            editTextTextOutput.setText(convertCase.toHyphenCase(editTextText.text.toString()))
+        }
+        if (spinner.selectedItem.toString() == "Remover hífen") {
+            editTextTextOutput.setText(convertCase.removeHyphenCase(editTextText.text.toString()))
+        }
+    }
+
     private fun hideStatusBarAndSupportBar() {
         supportActionBar!!.hide()
-
     }
 
     private fun changeTextInRealTime() {
         editTextText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(output: Editable) {
-                val convertCase = ConvertCase()
+                setSelectedItemInSpinner()
 
-                if (spinner.selectedItem.toString() == "Letras maiúsculas") {
-                    editTextTextOutput.setText(output.toString().toUpperCase())
-                }
-                if (spinner.selectedItem.toString() == "Letras minúsculas") {
-                    editTextTextOutput.setText(output.toString().toLowerCase())
-                }
-                if (spinner.selectedItem.toString() == "Letras alternativas (1)") {
-                    val convertCase = ConvertCase()
-                    editTextTextOutput.setText(convertCase.toAlternativeCase(editTextText.text.toString(), firstLetterUppercase = true))
-                }
-                if (spinner.selectedItem.toString() == "Letras alternativas (2)") {
-                    editTextTextOutput.setText(convertCase.toAlternativeCase(editTextText.text.toString(), firstLetterUppercase = false))
-                }
-                if (spinner.selectedItem.toString() == "Adicionar hífen") {
-                    editTextTextOutput.setText(convertCase.toHyphenCase(editTextText.text.toString()))
-                }
-                if (spinner.selectedItem.toString() == "Remover hífen") {
-                    editTextTextOutput.setText(convertCase.removeHyphenCase(editTextText.text.toString()))
-                }
+                mutableLiveData.postValue(output.toString().isNotEmpty())
             }
 
             override fun beforeTextChanged(
@@ -108,4 +118,17 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun observeTextLength() {
+        mutableLiveData.observe(this, Observer {
+            editTextTextOutput.isEnabled = it
+        })
+    }
+
+    private fun copyToClipboard(text: String) {
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        @Deprecated("")
+        clipboard.text = text
+    }
+
 }

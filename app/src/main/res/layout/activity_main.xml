@@ -67,6 +67,7 @@
             android:layout_weight="1"
             android:drawablePadding="10dp"
             android:ems="10"
+            android:enabled="false"
             android:gravity="start"
             android:hint="Esperando você digitar..."
             android:inputType="textMultiLine"
