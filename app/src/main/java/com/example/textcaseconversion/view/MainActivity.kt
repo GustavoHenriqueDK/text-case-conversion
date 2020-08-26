@@ -18,6 +18,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         hideStatusBarAndSupportBar()
 
+        val convertCase = ConvertCase()
+        Log.e("teste ", convertCase.toFormalCase("Vamos fazer. vários. testes de pontuação. para testar."))
+
         changeTextInRealTime()
         getSelectedItemInSpinner()
     }
